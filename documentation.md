@@ -298,7 +298,7 @@ The variable sEvent can be one of the following values if iSocket is an accepted
 <table>
 <tr><td>sEvent</td><td>Event Description</td></tr>
 <tr><td>ACCEPTED</td><td>A client connection was accepted (see the "Listening sockets" section above for more details).</td></tr>
-<tr><td>CONNECTED</td><td>\<Does not occur on accepted sockets\></td></tr>
+<tr><td>CONNECTED</td><td>&lt;Does not occur on accepted sockets&gt;</td></tr>
 <tr><td>DISCONNECTED</td><td>The client disconnected (see AHKsock_Close for more details).</td></tr>
 <tr><td>SEND</td><td>You may now send data to the client (see AHKsock_Send for more details).</td></tr>
 <tr><td>RECEIVED</td><td>You received data from the client. The data received is in bData and the length is in bDataLength.</td></tr>
@@ -308,7 +308,7 @@ The variable sEvent can be one of the following values if iSocket is an accepted
 The variable sEvent can be one of the following values if iSocket is a connected socket:  
 <table>
 <tr><td>sEvent</td><td>Event Description</td></tr>
-<tr><td>ACCEPTED</td><td>\<Does not occur on connected sockets\></td></tr>
+<tr><td>ACCEPTED</td><td>&lt;Does not occur on connected sockets&gt;</td></tr>
 <tr><td>CONNECTED</td><td>The connection attempt initiated by calling AHKsock_Connect has completed (see AHKsock_Connect for more details). If it was successful, iSocket will equal the client socket. If it failed, iSocket will equal -1. To get the error code that the failure returned, set an error handling function with AHKsock_ErrorHandler, and read ErrorLevel when iError is equal to 1.</td></tr>
 <tr><td>DISCONNECTED</td><td>The server disconnected (see AHKsock_Close for more details).</td></tr>
 <tr><td>SEND</td><td>You may now send data to the server (see AHKsock_Send for more details).</td></tr>
