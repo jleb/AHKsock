@@ -24,5 +24,5 @@ exactly the same way once connected to each other.
 Additional resources on Winsock and sockets in general:
 * [Winsock Programmer's FAQ](http://tangentsoft.net/wskfaq/)
 * [WinSock Development Information](http://sockets.com/)
-* [MSDN Windows Sockets 2 Reference](http://msdn.microsoft.com/en-us/library
-/ms740673)
+* [MSDN Windows Sockets 2 Reference]("http://msdn.microsoft.com/en-us/library
+/ms740673")
