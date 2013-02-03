@@ -20,21 +20,21 @@
 
 Tells AHKsock to listen on the port in sPort, and call the function in sFunction when events occur. If sPort is a port on
 which AHKsock is already listening, the action taken depends on sFunction:
-    - If sFunction is False, AHKsock will stop listening on the port in sPort.
-    - If sFunction is "()", AHKsock will return the name of the current function AHKsock calls when
+    * If sFunction is False, AHKsock will stop listening on the port in sPort.
+    * If sFunction is "()", AHKsock will return the name of the current function AHKsock calls when
       a client connects on the port in sPort.
-    - If sFunction is a valid function, AHKsock will set that function as the new function to call
+    * If sFunction is a valid function, AHKsock will set that function as the new function to call
       when a client connects on the port in sPort.
 
 Returns blank on success. On failure, it returns one of the following positive integer:
-    2: sFunction is not a valid function.
-    3: The WSAStartup() call failed. The error is in ErrorLevel.
-    4: The Winsock DLL does not support version 2.2.
-    5: The getaddrinfo() call failed. The error is in ErrorLevel.
-    6: The socket() call failed. The error is in ErrorLevel.
-    7: The bind() call failed. The error is in ErrorLevel.
-    8: The WSAAsyncSelect() call failed. The error is in ErrorLevel.
-    9: The listen() call failed. The error is in ErrorLevel.
+    * 2: sFunction is not a valid function.
+    * 3: The WSAStartup() call failed. The error is in ErrorLevel.
+    * 4: The Winsock DLL does not support version 2.2.
+    * 5: The getaddrinfo() call failed. The error is in ErrorLevel.
+    * 6: The socket() call failed. The error is in ErrorLevel.
+    * 7: The bind() call failed. The error is in ErrorLevel.
+    * 8: The WSAAsyncSelect() call failed. The error is in ErrorLevel.
+    * 9: The listen() call failed. The error is in ErrorLevel.
 
 For the failures which affect ErrorLevel, ErrorLevel will contain either the reason the DllCall itself failed (ie. -1, -2,
 An, etc... as laid out in the AHK docs for DllCall) or the Windows Sockets Error Code as defined at:
@@ -57,15 +57,15 @@ AHKsock_Connect can only be called again once the previous connection attempt is
 to make another connection attempt, you may keep polling it by calling AHKsock_Connect(0,0,0) until it returns False.
 
 Returns blank on success. On failure, it returns one of the following positive integer:
-    1: AHKsock_Connect is still processing a connection attempt. ErrorLevel contains the name and the port of that
-       connection attempt, separated by a tab.
-    2: sFunction is not a valid function.
-    3: The WSAStartup() call failed. The error is in ErrorLevel.
-    4: The Winsock DLL does not support version 2.2.
-    5: The getaddrinfo() call failed. The error is in ErrorLevel.
-    6: The socket() call failed. The error is in ErrorLevel.
-    7: The WSAAsyncSelect() call failed. The error is in ErrorLevel.
-    8: The connect() call failed. The error is in ErrorLevel.
+    * 1: AHKsock_Connect is still processing a connection attempt. ErrorLevel contains the name and the port of that
+         connection attempt, separated by a tab.
+    * 2: sFunction is not a valid function.
+    * 3: The WSAStartup() call failed. The error is in ErrorLevel.
+    * 4: The Winsock DLL does not support version 2.2.
+    * 5: The getaddrinfo() call failed. The error is in ErrorLevel.
+    * 6: The socket() call failed. The error is in ErrorLevel.
+    * 7: The WSAAsyncSelect() call failed. The error is in ErrorLevel.
+    * 8: The connect() call failed. The error is in ErrorLevel.
 
 For the failures which affect ErrorLevel, ErrorLevel will contain either the reason the DllCall itself failed (ie. -1, -2,
 An, etc... as laid out in the AHK docs for DllCall) or the Windows Sockets Error Code as defined at:
@@ -82,13 +82,13 @@ Returns the number of bytes sent on success. This can be less than the number re
 i.e. between 1 and iLength. This would occur if no buffer space is available within the transport system to hold the data to
 be transmitted, in which case the number of bytes sent can be between 1 and the requested length, depending on buffer
 availability on both the client and server computers. On failure, it returns one of the following negative integer:
-    -1: WSAStartup hasn't been called yet.
-    -2: Received WSAEWOULDBLOCK. This means that calling send() would have blocked the thread.
-    -3: The send() call failed. The error is in ErrorLevel.
-    -4: The socket specified in iSocket is not a valid socket. This means either that the socket in iSocket hasn't been
-        created using AHKsock_Connect or AHKsock_Listen, or that the socket has already been destroyed.
-    -5: The socket specified in iSocket is not cleared for sending. You haven't waited for the SEND event before calling,
-        either ever, or not since you last received WSAEWOULDBLOCK.
+    * -1: WSAStartup hasn't been called yet.
+    * -2: Received WSAEWOULDBLOCK. This means that calling send() would have blocked the thread.
+    * -3: The send() call failed. The error is in ErrorLevel.
+    * -4: The socket specified in iSocket is not a valid socket. This means either that the socket in iSocket hasn't been
+          created using AHKsock_Connect or AHKsock_Listen, or that the socket has already been destroyed.
+    * -5: The socket specified in iSocket is not cleared for sending. You haven't waited for the SEND event before calling,
+          either ever, or not since you last received WSAEWOULDBLOCK.
 
 You may start sending data to the connected socket in iSocket only after the socket's associated function receives the first
 SEND event. Upon receiving the event, you may keep calling AHKsock_Send to send data until you receive the error -2, at
@@ -102,9 +102,9 @@ http://msdn.microsoft.com/en-us/library/ms740668
 ### AHKsock_ForceSend(iSocket, ptrData, iLength)
 
 This function is exactly the same as AHKsock_Send, but with three differences:
-    - If only part of the data could be sent, it will automatically keep trying to send the remaining part.
-    - If it receives WSAEWOULDBLOCK, it will wait for the socket's SEND event and try sending the data again.
-    - If the data buffer to send is larger than the socket's send buffer size, it will automatically send the data in
+    * If only part of the data could be sent, it will automatically keep trying to send the remaining part.
+    * If it receives WSAEWOULDBLOCK, it will wait for the socket's SEND event and try sending the data again.
+    * If the data buffer to send is larger than the socket's send buffer size, it will automatically send the data in
       smaller chunks in order to avoid a performance hit. See http://support.microsoft.com/kb/823764 for more info.
 
 Therefore, AHKsock_ForceSend will return only when all the data has been sent. Because this function relies on waiting for
@@ -120,12 +120,12 @@ data, allowing you to update the GUI if necessary (e.g. a progress bar).
 
 Returns blank on success, which means that all the data to which ptrData points of length iLength has been sent. On failure,
 it returns one of the following negative integer:
-    -1: WSAStartup hasn't been called yet.
-    -3: The send() call failed. The error is in ErrorLevel.
-    -4: The socket specified in iSocket is not a valid socket. This means either that the socket in iSocket hasn't been
-        created using AHKsock_Connect or AHKsock_Listen, or that the socket has already been destroyed.
-    -5: The current thread is critical.
-    -6: The getsockopt() call failed. The error is in ErrorLevel.
+    * -1: WSAStartup hasn't been called yet.
+    * -3: The send() call failed. The error is in ErrorLevel.
+    * -4: The socket specified in iSocket is not a valid socket. This means either that the socket in iSocket hasn't been
+          created using AHKsock_Connect or AHKsock_Listen, or that the socket has already been destroyed.
+    * -5: The current thread is critical.
+    * -6: The getsockopt() call failed. The error is in ErrorLevel.
 
 For the failures which affect ErrorLevel, ErrorLevel will contain either the reason the DllCall itself failed (ie. -1, -2,
 An, etc... as laid out in the AHK docs for DllCall) or the Windows Sockets Error Code as defined at:
@@ -139,7 +139,7 @@ specified in iTimeout (in milliseconds), it will perform a hard shutdown before 
 the section titled "NOTES ON CLOSING SOCKETS AND AHKsock_Close" for more information.
 
 Returns blank on success. On failure, it returns one of the following positive integer:
-    1: The shutdown() call failed. The error is in ErrorLevel. AHKsock_Close forcefully closed the socket and freed the
+    * 1: The shutdown() call failed. The error is in ErrorLevel. AHKsock_Close forcefully closed the socket and freed the
        associated resources.
 
 Note that when AHKsock_Close is called with no socket specified, it will never return an error.
@@ -154,10 +154,10 @@ Retrieves the list of IP addresses that correspond to the hostname in sHostName.
 by newline characters. If bOne is True, only one IP (the first one) will be returned.
 
 Returns blank on success. On failure, it returns one of the following positive integer:
-    1: The WSAStartup() call failed. The error is in ErrorLevel.
-    2: The Winsock DLL does not support version 2.2.
-    3: Received WSAHOST_NOT_FOUND. No such host is known.
-    4: The getaddrinfo() call failed. The error is in ErrorLevel.
+    * 1: The WSAStartup() call failed. The error is in ErrorLevel.
+    * 2: The Winsock DLL does not support version 2.2.
+    * 3: Received WSAHOST_NOT_FOUND. No such host is known.
+    * 4: The getaddrinfo() call failed. The error is in ErrorLevel.
 
 For the failures which affect ErrorLevel, ErrorLevel will contain either the reason the DllCall itself failed (ie. -1, -2,
 An, etc... as laid out in the AHK docs for DllCall) or the Windows Sockets Error Code as defined at:
@@ -169,10 +169,10 @@ Retrieves the hostname that corresponds to the IP address in sIP. If a port in s
 service that corresponds to the port in sPort.
 
 Returns blank on success. On failure, it returns on of the following positive integer:
-    1: The WSAStartup() call failed. The error is in ErrorLevel.
-    2: The Winsock DLL does not support version 2.2.
-    3: The IP address supplied in sIP is invalid.
-    4: The getnameinfo() call failed. The error is in ErrorLevel.
+    * 1: The WSAStartup() call failed. The error is in ErrorLevel.
+    * 2: The Winsock DLL does not support version 2.2.
+    * 3: The IP address supplied in sIP is invalid.
+    * 4: The getnameinfo() call failed. The error is in ErrorLevel.
 
 For the failures which affect ErrorLevel, ErrorLevel will contain either the reason the DllCall itself failed (ie. -1, -2,
 An, etc... as laid out in the AHK docs for DllCall) or the Windows Sockets Error Code as defined at:
@@ -181,19 +181,19 @@ http://msdn.microsoft.com/en-us/library/ms740668
 ### AHKsock_SockOpt(iSocket, sOption, iValue = -1)
 
 Retrieves or sets a socket option. Supported options are:
-    SO_KEEPALIVE: Enable/Disable sending keep-alives. iValue must be True/False to enable/disable. Disabled by default.
-    SO_SNDBUF:    Total buffer space reserved for sends. Set iValue to 0 to completely disable the buffer. Default is 8 KB.
-    SO_RCVBUF:    Total buffer space reserved for receives. Default is 8 KB.
-    TCP_NODELAY:  Enable/Disable the Nagle algorithm for send coalescing. Set iValue to True to disable the Nagle algorithm,
-                  set iValue to False to enable the Nagle algorithm, which is the default.
+    * SO_KEEPALIVE: Enable/Disable sending keep-alives. iValue must be True/False to enable/disable. Disabled by default.
+    * SO_SNDBUF:    Total buffer space reserved for sends. Set iValue to 0 to completely disable the buffer. Default is 8 KB.
+    * SO_RCVBUF:    Total buffer space reserved for receives. Default is 8 KB.
+    * TCP_NODELAY:  Enable/Disable the Nagle algorithm for send coalescing. Set iValue to True to disable the Nagle algorithm,
+                    set iValue to False to enable the Nagle algorithm, which is the default.
 
 It is usually best to leave these options to their default (especially the Nagle algorithm). Only change them if you
 understand the consequences. See MSDN for more information on those options.
 
 If iValue is specified, it sets the option to iValue and returns blank on success. If iValue is left as -1, it returns the
 value of the option specified. On failure, it returns one of the following negative integer:
-    -1: The getsockopt() failed. The error is in ErrorLevel.
-    -2: The setsockopt() failed. The error is in ErrorLevel.
+    * -1: The getsockopt() failed. The error is in ErrorLevel.
+    * -2: The setsockopt() failed. The error is in ErrorLevel.
 
 For the failures which affect ErrorLevel, ErrorLevel will contain either the reason the DllCall itself failed (ie. -1, -2,
 An, etc... as laid out in the AHK docs for DllCall) or the Windows Sockets Error Code as defined at:
@@ -203,14 +203,14 @@ http://msdn.microsoft.com/en-us/library/ms740668
 
 Changes the AHKsock setting in sSetting to sValue. If sValue is blank, the current value for that setting is returned. If
 sValue is the word "Reset", the setting is restored to its default value. The possible settings are:
-    Message: Determines the Windows message numbers used to monitor network events. The message number in iMessage and the
-             next number will be used. Default value is 0x8000. For example, calling AHKsock_Settings("Message", 0x8005)
-             will cause AHKsock to use 0x8005 and 0x8006 to monitor network events.
-    Buffer:  Determines the size of the buffer (in bytes) used when receiving data. This is thus the maximum size of bData
-             when the RECEIVED event is raised. If the data received is more than the buffer size, multiple recv() calls
-             (and thus multiple RECEIVED events) will be needed. Note that you shouldn't use this setting as a means of
-             delimiting frames. See the "NOTES ON RECEIVING AND SENDING DATA" section for more information about receiving
-             and sending data. Default value is 64 KB, which is the maximum for TCP.
+    * Message: Determines the Windows message numbers used to monitor network events. The message number in iMessage and the
+               next number will be used. Default value is 0x8000. For example, calling AHKsock_Settings("Message", 0x8005)
+               will cause AHKsock to use 0x8005 and 0x8006 to monitor network events.
+    * Buffer:  Determines the size of the buffer (in bytes) used when receiving data. This is thus the maximum size of bData
+               when the RECEIVED event is raised. If the data received is more than the buffer size, multiple recv() calls
+               (and thus multiple RECEIVED events) will be needed. Note that you shouldn't use this setting as a means of
+               delimiting frames. See the "NOTES ON RECEIVING AND SENDING DATA" section for more information about receiving
+               and sending data. Default value is 64 KB, which is the maximum for TCP.
 
 If you do call AHKsock_Settings to change the values from their default ones, it is best to do so at the beginning of the
 script. The message number used cannot be changed as long as there are active connections.
@@ -228,19 +228,19 @@ The function in sFunction must be of the following format:
 MyErrorHandler(iError, iSocket)
 
 The possible values for iError are:
-     1: The connect() call failed. The error is in ErrorLevel.
-     2: The WSAAsyncSelect() call failed. The error is in ErrorLevel.
-     3: The socket() call failed. The error is in ErrorLevel.
-     4: The WSAAsyncSelect() call failed. The error is in ErrorLevel.
-     5: The connect() call failed. The error is in ErrorLevel.
-     6: FD_READ event received with an error. The error is in ErrorLevel. The socket is in iSocket.
-     7: The recv() call failed. The error is in ErrorLevel. The socket is in iSocket.
-     8: FD_WRITE event received with an error. The error is in ErrorLevel. The socket is in iSocket.
-     9: FD_ACCEPT event received with an error. The error is in ErrorLevel. The socket is in iSocket.
-    10: The accept() call failed. The error is in ErrorLevel. The listening socket is in iSocket.
-    11: The WSAAsyncSelect() call failed. The error is in ErrorLevel. The listening socket is in iSocket.
-    12: The listen() call failed. The error is in ErrorLevel. The listening socket is in iSocket.
-    13: The shutdown() call failed. The error is in ErrorLevel. The socket is in iSocket.
+    *  1: The connect() call failed. The error is in ErrorLevel.
+    *  2: The WSAAsyncSelect() call failed. The error is in ErrorLevel.
+    *  3: The socket() call failed. The error is in ErrorLevel.
+    *  4: The WSAAsyncSelect() call failed. The error is in ErrorLevel.
+    *  5: The connect() call failed. The error is in ErrorLevel.
+    *  6: FD_READ event received with an error. The error is in ErrorLevel. The socket is in iSocket.
+    *  7: The recv() call failed. The error is in ErrorLevel. The socket is in iSocket.
+    *  8: FD_WRITE event received with an error. The error is in ErrorLevel. The socket is in iSocket.
+    *  9: FD_ACCEPT event received with an error. The error is in ErrorLevel. The socket is in iSocket.
+    * 10: The accept() call failed. The error is in ErrorLevel. The listening socket is in iSocket.
+    * 11: The WSAAsyncSelect() call failed. The error is in ErrorLevel. The listening socket is in iSocket.
+    * 12: The listen() call failed. The error is in ErrorLevel. The listening socket is in iSocket.
+    * 13: The shutdown() call failed. The error is in ErrorLevel. The socket is in iSocket.
 
 For the failures which affect ErrorLevel, ErrorLevel will contain either the reason the DllCall itself failed (ie. -1, -2,
 An, etc... as laid out in the AHK docs for DllCall) or the Windows Sockets Error Code as defined at:
@@ -255,33 +255,33 @@ MyFunction(sEvent, iSocket = 0, sName = 0, sAddr = 0, sPort = 0, ByRef bData = 0
 The variable sEvent contains the event for which MyFunction was called. The event raised is associated with one and only one
 socket; the one in iSocket. The meaning of the possible events that can occur depend on the type of socket involved. AHKsock
 deals with three different types of sockets:
-    - Listening sockets: These sockets are created by a call to AHKsock_Listen. All they do is wait for clients to request
+    * Listening sockets: These sockets are created by a call to AHKsock_Listen. All they do is wait for clients to request
       a connection. These sockets will never appear as the iSocket parameter because requests for connections are
       immediately accepted, and MyFunction immediately receives the ACCEPTED event with iSocket set to the accepted socket.
-    - Accepted sockets: These sockets are created once a listening socket receives an incoming connection attempt from a
+    * Accepted sockets: These sockets are created once a listening socket receives an incoming connection attempt from a
       client and accepts it. They are thus the sockets that servers use to communicate with clients.
-    - Connected sockets: These sockets are created by a successful call to AHKsock_Connect. These are the sockets that
+    * Connected sockets: These sockets are created by a successful call to AHKsock_Connect. These are the sockets that
       clients use to communicate with servers.
 
 More info about sockets:
-    - You may have multiple client sockets connecting to the same listening socket (ie. on the same port).
-    - You may have multiple listening sockets for different ports.
-    - You cannot have more than one listening socket for the same port (or you will receive a bind() error).
-    - Every single connection between a client and a server will have its own client socket on the client side, and its own
+    * You may have multiple client sockets connecting to the same listening socket (ie. on the same port).
+    * You may have multiple listening sockets for different ports.
+    * You cannot have more than one listening socket for the same port (or you will receive a bind() error).
+    * Every single connection between a client and a server will have its own client socket on the client side, and its own
       server (accepted) socket on the server side.
 
 For all of the events that the event-handling function receives,
-    - sEvent contains the event that occurred (as described below),
-    - iSocket contains the socket on which the event occurred,
-    - sName contains a value which depends on the type of socket in iSocket:
-        - If the socket is an accepted socket, sName is empty.
-        - If the socket is a connected socket, sName is the same value as the sName parameter that was used when
+    * sEvent contains the event that occurred (as described below),
+    * iSocket contains the socket on which the event occurred,
+    * sName contains a value which depends on the type of socket in iSocket:
+        * If the socket is an accepted socket, sName is empty.
+        * If the socket is a connected socket, sName is the same value as the sName parameter that was used when
           AHKsock_Connect was called to create the socket. Since AHKsock_Connect accepts both hostnames and IP addresses,
           sName may contain either.
-    - sAddr contains the IP address of the socket's endpoint (i.e. the peer's IP address). This means that if the socket in
+    * sAddr contains the IP address of the socket's endpoint (i.e. the peer's IP address). This means that if the socket in
       iSocket is an accepted socket, sAddr contains the IP address of the client. Conversely, if it is a connected socket,
       sAddr contains the server's IP.
-    - sPort contains the server port on which the connection was accepted.
+    * sPort contains the server port on which the connection was accepted.
 
 Obviously, if your script only calls AHKsock_Listen (acting as a server) or AHKsock_Connect (acting as a client) you don't
 need to check if the socket in iSocket is an accepted socket or a connected socket, since it can only be one or the other.
@@ -295,26 +295,26 @@ conversation doesn't actually change whether or not we're on the server side or 
 example of this, where only one function is used for both server and client sockets.
 
 The variable sEvent can be one of the following values if iSocket is an accepted socket:
-    sEvent =      Event Description:
-    ACCEPTED      A client connection was accepted (see the "Listening sockets" section above for more details).
-    CONNECTED     <Does not occur on accepted sockets>
-    DISCONNECTED  The client disconnected (see AHKsock_Close for more details).
-    SEND          You may now send data to the client (see AHKsock_Send for more details).
-    RECEIVED      You received data from the client. The data received is in bData and the length is in bDataLength.
+    sEvent =      Event Description:  
+    ACCEPTED      A client connection was accepted (see the "Listening sockets" section above for more details).  
+    CONNECTED     <Does not occur on accepted sockets>  
+    DISCONNECTED  The client disconnected (see AHKsock_Close for more details).  
+    SEND          You may now send data to the client (see AHKsock_Send for more details).  
+    RECEIVED      You received data from the client. The data received is in bData and the length is in bDataLength.  
     SENDLAST      The client is disconnecting. This is your last chance to send data to it. Once this function returns,
                   disconnection will occur. This event only occurs on the side which did not initiate shutdown (see
                   AHKsock_Close for more details).
 
 The variable sEvent can be one of the following values if iSocket is a connected socket:
-    sEvent =      Event Description:
-    ACCEPTED      <Does not occur on connected sockets>
+    sEvent =      Event Description:  
+    ACCEPTED      <Does not occur on connected sockets>  
     CONNECTED     The connection attempt initiated by calling AHKsock_Connect has completed (see AHKsock_Connect for more
                   details). If it was successful, iSocket will equal the client socket. If it failed, iSocket will equal -1.
                   To get the error code that the failure returned, set an error handling function with AHKsock_ErrorHandler,
-                  and read ErrorLevel when iError is equal to 1.
-    DISCONNECTED  The server disconnected (see AHKsock_Close for more details).
-    SEND          You may now send data to the server (see AHKsock_Send for more details).
-    RECEIVED      You received data from the server. The data received is in bData and the length is in bDataLength.
+                  and read ErrorLevel when iError is equal to 1.  
+    DISCONNECTED  The server disconnected (see AHKsock_Close for more details).  
+    SEND          You may now send data to the server (see AHKsock_Send for more details).  
+    RECEIVED      You received data from the server. The data received is in bData and the length is in bDataLength.  
     SENDLAST      The server is disconnecting. This is your last chance to send data to it. Once this function returns,
                   disconnection will occur. This event only occurs on the side which did not initiate shutdown (see 
                   AHKsock_Close for more details).
@@ -358,16 +358,16 @@ add your own menu item which will in turn call AHKsock_Close with no socket spec
 OnExit sub. See AHKsock Example 1 for an example of this.
 
 This is how the graceful shutdown process occurs between two connected peers:
-    a> Once one of the peers (it may be the server of the client) is done sending all its data, it calls AHKsock_Close to
+    * a> Once one of the peers (it may be the server of the client) is done sending all its data, it calls AHKsock_Close to
        shutdown the socket. (It is not a good idea to have the last peer receiving data call AHKsock_Close. This will result
        in AHKsock_Send errors on the other peer if more data needs to be sent.) In the next steps, we refer to the peer that
        first calls AHKsock_Close as the invoker, and the other peer simply as the peer.
-    b> The peer receives the invoker's intention to close the connection and is given one last chance to send any remaining
+    * b> The peer receives the invoker's intention to close the connection and is given one last chance to send any remaining
        data. This is when the peer's socket's associated function receives the SENDLAST event.
-    c> Once the peer is done sending any remaining data (if any), it also calls AHKsock_Close on that same socket to shut it
+    * c> Once the peer is done sending any remaining data (if any), it also calls AHKsock_Close on that same socket to shut it
        down, and then close the socket for good. This happens once the peer's function that received the SENDLAST event
        returns from the event. At this point, the peer's socket's associated function receives the DISCONNECTED event.
-    d> This happens in parallel with c>. After the invoker receives the peer's final data (if any), as well as notice that
+    * d> This happens in parallel with c>. After the invoker receives the peer's final data (if any), as well as notice that
        the peer has also called AHKsock_Close on the socket, the invoker finally also closes the socket for good. At this
        point, the socket's associated function also receives the DISCONNECTED event.
 
