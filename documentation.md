@@ -296,16 +296,16 @@ example of this, where only one function is used for both server and client sock
 
 The variable sEvent can be one of the following values if iSocket is an accepted socket:  
 <table>
-<tr><td>sEvent =</td><td>Event Description:</td></tr>
+<tr><td>sEvent</td><td>Event Description</td></tr>
 <tr><td>ACCEPTED</td><td>A client connection was accepted (see the "Listening sockets" section above for more details).</td></tr>
-</table>
-CONNECTED     <Does not occur on accepted sockets>  
-DISCONNECTED  The client disconnected (see AHKsock_Close for more details).  
-SEND          You may now send data to the client (see AHKsock_Send for more details).  
-RECEIVED      You received data from the client. The data received is in bData and the length is in bDataLength.  
-SENDLAST      The client is disconnecting. This is your last chance to send data to it. Once this function returns,
+<tr><td>CONNECTED</td><td><Does not occur on accepted sockets></td></tr>
+<tr><td>DISCONNECTED</td><td>The client disconnected (see AHKsock_Close for more details).</td></tr>
+<tr><td>SEND</td><td>You may now send data to the client (see AHKsock_Send for more details).</td></tr>
+<tr><td>RECEIVED</td><td>You received data from the client. The data received is in bData and the length is in bDataLength.</td></tr>
+<tr><td>SENDLAST</td><td>The client is disconnecting. This is your last chance to send data to it. Once this function returns,
 disconnection will occur. This event only occurs on the side which did not initiate shutdown (see
-AHKsock_Close for more details).
+AHKsock_Close for more details).</td></tr>
+</table>
 
 The variable sEvent can be one of the following values if iSocket is a connected socket:  
 sEvent =      Event Description:  
