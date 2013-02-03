@@ -1,7 +1,5 @@
 # Documentation
 
-## Table of Contents
-
 [AHKsock_Listen()](#ahksock_listensport-sfunction--false)  
 [AHKsock_Connect()](#ahksock_connectsname-sport-sfunction)  
 [AHKsock_Send()](#ahksock_sendisocket-ptrdata-ilength)  
