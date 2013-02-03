@@ -298,28 +298,23 @@ The variable sEvent can be one of the following values if iSocket is an accepted
 <table>
 <tr><td>sEvent</td><td>Event Description</td></tr>
 <tr><td>ACCEPTED</td><td>A client connection was accepted (see the "Listening sockets" section above for more details).</td></tr>
-<tr><td>CONNECTED</td><td><Does not occur on accepted sockets></td></tr>
+<tr><td>CONNECTED</td><td>\<Does not occur on accepted sockets\></td></tr>
 <tr><td>DISCONNECTED</td><td>The client disconnected (see AHKsock_Close for more details).</td></tr>
 <tr><td>SEND</td><td>You may now send data to the client (see AHKsock_Send for more details).</td></tr>
 <tr><td>RECEIVED</td><td>You received data from the client. The data received is in bData and the length is in bDataLength.</td></tr>
-<tr><td>SENDLAST</td><td>The client is disconnecting. This is your last chance to send data to it. Once this function returns,
-disconnection will occur. This event only occurs on the side which did not initiate shutdown (see
-AHKsock_Close for more details).</td></tr>
+<tr><td>SENDLAST</td><td>The client is disconnecting. This is your last chance to send data to it. Once this function returns, disconnection will occur. This event only occurs on the side which did not initiate shutdown (see AHKsock_Close for more details).</td></tr>
 </table>
 
 The variable sEvent can be one of the following values if iSocket is a connected socket:  
-sEvent =      Event Description:  
-ACCEPTED      <Does not occur on connected sockets>  
-CONNECTED     The connection attempt initiated by calling AHKsock_Connect has completed (see AHKsock_Connect for more
-details). If it was successful, iSocket will equal the client socket. If it failed, iSocket will equal -1.
-To get the error code that the failure returned, set an error handling function with AHKsock_ErrorHandler,
-and read ErrorLevel when iError is equal to 1.  
-DISCONNECTED  The server disconnected (see AHKsock_Close for more details).  
-SEND          You may now send data to the server (see AHKsock_Send for more details).  
-RECEIVED      You received data from the server. The data received is in bData and the length is in bDataLength.  
-SENDLAST      The server is disconnecting. This is your last chance to send data to it. Once this function returns,
-disconnection will occur. This event only occurs on the side which did not initiate shutdown (see 
-AHKsock_Close for more details).
+<table>
+<tr><td>sEvent</td><td>Event Description</td></tr>
+<tr><td>ACCEPTED</td><td>\<Does not occur on connected sockets\></td></tr>
+<tr><td>CONNECTED</td><td>The connection attempt initiated by calling AHKsock_Connect has completed (see AHKsock_Connect for more details). If it was successful, iSocket will equal the client socket. If it failed, iSocket will equal -1. To get the error code that the failure returned, set an error handling function with AHKsock_ErrorHandler, and read ErrorLevel when iError is equal to 1.</td></tr>
+<tr><td>DISCONNECTED</td><td>The server disconnected (see AHKsock_Close for more details).</td></tr>
+<tr><td>SEND</td><td>You may now send data to the server (see AHKsock_Send for more details).</td></tr>
+<tr><td>RECEIVED</td><td>You received data from the server. The data received is in bData and the length is in bDataLength.</td></tr>
+<tr><td>SENDLAST</td><td>The server is disconnecting. This is your last chance to send data to it. Once this function returns, disconnection will occur. This event only occurs on the side which did not initiate shutdown (see AHKsock_Close for more details).</td></tr>
+</table>
 
 More information: The event-handling functions described in here are always called with the Critical setting on. This is
 necessary in order to ensure proper processing of messages. Note that as long as the event-handling function does not
