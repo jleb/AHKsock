@@ -20,3 +20,9 @@ great example of a symmetrical connection. Whichever is started first becomes
 the server, while the second becomes the client. However, they both behave in
 exactly the same way once connected to each other.
 * In Example 4, we can look up IPs from hostnames and vice-versa.
+
+Additional resources on Winsock and sockets in general:
+* [Winsock Programmer's FAQ](http://tangentsoft.net/wskfaq/)
+* [WinSock Development Information](http://sockets.com/)
+* [MSDN Windows Sockets 2 Reference](http://msdn.microsoft.com/en-us/library/
+ms740673)
