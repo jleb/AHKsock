@@ -2,23 +2,23 @@
 
 ## Table of Contents
 
-[AHKsock_Listen](#ahksock_listensport-sfunction--false)  
-[AHKsock_Connect](#ahksock_connectsname-sport-sfunction)  
-[AHKsock_Send](#ahksock_sendisocket-ptrdata-ilength)  
-[AHKsock_ForceSend](#ahksock_forcesendisocket-ptrdata-ilength)  
-[AHKsock_Close](#ahksock_closeisocket---1-itimeout--5000)  
-[AHKsock_GetAddrInfo](#ahksock_getaddrinfoshostname-byref-siplist-bone--false)  
-[AHKsock_GetNameInfo](#ahksock_getnameinfosip-byref-shostname-sport--0-byref-sservice--)  
-[AHKsock_SockOpt](#ahksock_sockoptisocket-soption-ivalue---1)  
-[AHKsock_Settings](#ahksock_settingsssetting-svalue--)  
-[AHKsock_ErrorHandler](#ahksock_errorhandlersfunction--)  
+[AHKsock_Listen()](#ahksock_listensport-sfunction--false)  
+[AHKsock_Connect()](#ahksock_connectsname-sport-sfunction)  
+[AHKsock_Send()](#ahksock_sendisocket-ptrdata-ilength)  
+[AHKsock_ForceSend()](#ahksock_forcesendisocket-ptrdata-ilength)  
+[AHKsock_Close()](#ahksock_closeisocket---1-itimeout--5000)  
+[AHKsock_GetAddrInfo()](#ahksock_getaddrinfoshostname-byref-siplist-bone--false)  
+[AHKsock_GetNameInfo()](#ahksock_getnameinfosip-byref-shostname-sport--0-byref-sservice--)  
+[AHKsock_SockOpt()](#ahksock_sockoptisocket-soption-ivalue---1)  
+[AHKsock_Settings()](#ahksock_settingsssetting-svalue--)  
+[AHKsock_ErrorHandler()](#ahksock_errorhandlersfunction--)  
 [Notes on sockets and the structure of the event-handling function](#notes-on-sockets-and-the-structure-of-the-event-handling-function)  
 [Notes on closing sockets and AHKsock_Close](#notes-on-closing-sockets-and-ahksock_close)  
 [Notes on receiving and sending data](#notes-on-receiving-and-sending-data)  
 [Notes on testing a stream processor](#notes-on-testing-a-stream-processor)  
 
 
-## AHKsock_Listen(sPort, sFunction = False)
+### AHKsock_Listen(sPort, sFunction = False)
 
 Tells AHKsock to listen on the port in sPort, and call the function in sFunction when events occur. If sPort is a port on
 which AHKsock is already listening, the action taken depends on sFunction:
@@ -45,7 +45,7 @@ http://msdn.microsoft.com/en-us/library/ms740668
 See the section titled "STRUCTURE OF THE EVENT-HANDLING FUNCTION AND MORE INFO ABOUT SOCKETS" for more info about how the
 function in sFunction interacts with AHKsock.
 
-## AHKsock_Connect(sName, sPort, sFunction)
+### AHKsock_Connect(sName, sPort, sFunction)
 
 Tells AHKsock to connect to the hostname or IP address in sName on the port in sPort, and call the function in sFunction
 when events occur.
@@ -76,7 +76,7 @@ http://msdn.microsoft.com/en-us/library/ms740668
 See the section titled "STRUCTURE OF THE EVENT-HANDLING FUNCTION AND MORE INFO ABOUT SOCKETS" for more info about how the
 function in sFunction interacts with AHKsock.
 
-## AHKsock_Send(iSocket, ptrData, iLength)
+### AHKsock_Send(iSocket, ptrData, iLength)
 
 Sends the data of length iLength to which ptrData points to the connected socket in iSocket.
 
@@ -101,7 +101,7 @@ For the failures which affect ErrorLevel, ErrorLevel will contain either the rea
 An, etc... as laid out in the AHK docs for DllCall) or the Windows Sockets Error Code as defined at:
 http://msdn.microsoft.com/en-us/library/ms740668
 
-## AHKsock_ForceSend(iSocket, ptrData, iLength)
+### AHKsock_ForceSend(iSocket, ptrData, iLength)
 
 This function is exactly the same as AHKsock_Send, but with three differences:
     - If only part of the data could be sent, it will automatically keep trying to send the remaining part.
@@ -133,7 +133,7 @@ For the failures which affect ErrorLevel, ErrorLevel will contain either the rea
 An, etc... as laid out in the AHK docs for DllCall) or the Windows Sockets Error Code as defined at:
 http://msdn.microsoft.com/en-us/library/ms740668
 
-## AHKsock_Close(iSocket = -1, iTimeout = 5000)
+### AHKsock_Close(iSocket = -1, iTimeout = 5000)
 
 Closes the socket in iSocket. If no socket is specified, AHKsock_Close will close all the sockets on record, as well as
 terminate use of the Winsock 2 DLL (by calling WSACleanup). If graceful shutdown cannot be attained after the timeout
@@ -150,7 +150,7 @@ For the failures which affect ErrorLevel, ErrorLevel will contain either the rea
 An, etc... as laid out in the AHK docs for DllCall) or the Windows Sockets Error Code as defined at:
 http://msdn.microsoft.com/en-us/library/ms740668
 
-## AHKsock_GetAddrInfo(sHostName, ByRef sIPList, bOne = False)
+### AHKsock_GetAddrInfo(sHostName, ByRef sIPList, bOne = False)
 
 Retrieves the list of IP addresses that correspond to the hostname in sHostName. The list is contained in sIPList, delimited
 by newline characters. If bOne is True, only one IP (the first one) will be returned.
@@ -165,7 +165,7 @@ For the failures which affect ErrorLevel, ErrorLevel will contain either the rea
 An, etc... as laid out in the AHK docs for DllCall) or the Windows Sockets Error Code as defined at:
 http://msdn.microsoft.com/en-us/library/ms740668
 
-## AHKsock_GetNameInfo(sIP, ByRef sHostName, sPort = 0, ByRef sService = "")
+### AHKsock_GetNameInfo(sIP, ByRef sHostName, sPort = 0, ByRef sService = "")
 
 Retrieves the hostname that corresponds to the IP address in sIP. If a port in sPort is supplied, it also retrieves the
 service that corresponds to the port in sPort.
@@ -180,7 +180,7 @@ For the failures which affect ErrorLevel, ErrorLevel will contain either the rea
 An, etc... as laid out in the AHK docs for DllCall) or the Windows Sockets Error Code as defined at:
 http://msdn.microsoft.com/en-us/library/ms740668
 
-## AHKsock_SockOpt(iSocket, sOption, iValue = -1)
+### AHKsock_SockOpt(iSocket, sOption, iValue = -1)
 
 Retrieves or sets a socket option. Supported options are:
     SO_KEEPALIVE: Enable/Disable sending keep-alives. iValue must be True/False to enable/disable. Disabled by default.
@@ -201,7 +201,7 @@ For the failures which affect ErrorLevel, ErrorLevel will contain either the rea
 An, etc... as laid out in the AHK docs for DllCall) or the Windows Sockets Error Code as defined at:
 http://msdn.microsoft.com/en-us/library/ms740668
 
-## AHKsock_Settings(sSetting, sValue = "")
+### AHKsock_Settings(sSetting, sValue = "")
 
 Changes the AHKsock setting in sSetting to sValue. If sValue is blank, the current value for that setting is returned. If
 sValue is the word "Reset", the setting is restored to its default value. The possible settings are:
@@ -217,7 +217,7 @@ sValue is the word "Reset", the setting is restored to its default value. The po
 If you do call AHKsock_Settings to change the values from their default ones, it is best to do so at the beginning of the
 script. The message number used cannot be changed as long as there are active connections.
 
-## AHKsock_ErrorHandler(sFunction = """")
+### AHKsock_ErrorHandler(sFunction = """")
 
 Sets the function in sFunction to be the new error handler. If sFunction is left at its default value, it returns the name
 of the current error handling function.
@@ -248,7 +248,7 @@ For the failures which affect ErrorLevel, ErrorLevel will contain either the rea
 An, etc... as laid out in the AHK docs for DllCall) or the Windows Sockets Error Code as defined at:
 http://msdn.microsoft.com/en-us/library/ms740668
 
-## Notes on sockets and the structure of the event-handling function
+### Notes on sockets and the structure of the event-handling function
 
 The functions used in the sFunction parameter of AHKsock_Listen and AHKsock_Connect must be of the following format:
 
@@ -326,7 +326,7 @@ necessary in order to ensure proper processing of messages. Note that as long as
 return, AHKsock cannot process other network messages. Although messages are buffered, smooth operation might suffer when
 letting the function run for longer than it should.
 
-## Notes on closing sockets and AHKsock_Close
+### Notes on closing sockets and AHKsock_Close
 
 There are a few things to note about the AHKsock_Close function. The most important one is this: because the OnExit
 subroutine cannot be made interruptible if running due to a call to Exit/ExitApp, AHKsock_Close will not be able to execute
@@ -376,7 +376,7 @@ This is how the graceful shutdown process occurs between two connected peers:
 When AHKsock_Close is called with no socket specified, this process occurs (in parallel) for every connected socket on
 record.
 
-## Notes on receiving and sending data
+### Notes on receiving and sending data
 
 It's important to understand that AHKsock uses the TCP protocol, which is a stream protocol. This means that the data
 received comes as a stream, with no apparent boundaries (i.e. frames or packets). For example, if a peer sends you a string,
@@ -396,7 +396,7 @@ received data and wait for the remaining data to arrive before processing the co
 This technique is used in in AHKsock Example 3, where peers send each other strings by first declaring how long the string
 will be (see the StreamProcessor function of Example 3).
 
-## Notes on testing a stream processor
+### Notes on testing a stream processor
 
 As you write applications that use length-prefixing as described above, you might find it hard to test their ability to
 properly cut up and/or put together the data into frames when testing them on the same machine or on a LAN (because the
