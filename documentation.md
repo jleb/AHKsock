@@ -20,11 +20,11 @@
 
 Tells AHKsock to listen on the port in sPort, and call the function in sFunction when events occur. If sPort is a port on
 which AHKsock is already listening, the action taken depends on sFunction:  
-    * If sFunction is False, AHKsock will stop listening on the port in sPort.
-    * If sFunction is "()", AHKsock will return the name of the current function AHKsock calls when
-      a client connects on the port in sPort.
-    * If sFunction is a valid function, AHKsock will set that function as the new function to call
-      when a client connects on the port in sPort.
+* If sFunction is False, AHKsock will stop listening on the port in sPort.
+* If sFunction is "()", AHKsock will return the name of the current function AHKsock calls when
+a client connects on the port in sPort.
+* If sFunction is a valid function, AHKsock will set that function as the new function to call
+when a client connects on the port in sPort.
 
 Returns blank on success. On failure, it returns one of the following positive integer:  
     * 2: sFunction is not a valid function.
