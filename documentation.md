@@ -274,8 +274,8 @@ For all of the events that the event-handling function receives,
 * sEvent contains the event that occurred (as described below),
 * iSocket contains the socket on which the event occurred,
 * sName contains a value which depends on the type of socket in iSocket:
-* If the socket is an accepted socket, sName is empty.
-* If the socket is a connected socket, sName is the same value as the sName parameter that was used when
+  * If the socket is an accepted socket, sName is empty.
+  * If the socket is a connected socket, sName is the same value as the sName parameter that was used when
 AHKsock_Connect was called to create the socket. Since AHKsock_Connect accepts both hostnames and IP addresses,
 sName may contain either.
 * sAddr contains the IP address of the socket's endpoint (i.e. the peer's IP address). This means that if the socket in
@@ -295,8 +295,10 @@ conversation doesn't actually change whether or not we're on the server side or 
 example of this, where only one function is used for both server and client sockets.
 
 The variable sEvent can be one of the following values if iSocket is an accepted socket:  
-sEvent =      Event Description:  
-ACCEPTED      A client connection was accepted (see the "Listening sockets" section above for more details).  
+<table>
+<tr><td>sEvent =</td><td></td>Event Description:</tr>
+<tr><td>ACCEPTED</td><td></td>A client connection was accepted (see the "Listening sockets" section above for more details).</tr>
+</table>
 CONNECTED     <Does not occur on accepted sockets>  
 DISCONNECTED  The client disconnected (see AHKsock_Close for more details).  
 SEND          You may now send data to the client (see AHKsock_Send for more details).  
