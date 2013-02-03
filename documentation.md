@@ -296,8 +296,8 @@ example of this, where only one function is used for both server and client sock
 
 The variable sEvent can be one of the following values if iSocket is an accepted socket:  
 <table>
-<tr><td>sEvent =</td><td></td>Event Description:</tr>
-<tr><td>ACCEPTED</td><td></td>A client connection was accepted (see the "Listening sockets" section above for more details).</tr>
+<tr><td>sEvent =</td><td>Event Description:</td></tr>
+<tr><td>ACCEPTED</td><td>A client connection was accepted (see the "Listening sockets" section above for more details).</td></tr>
 </table>
 CONNECTED     <Does not occur on accepted sockets>  
 DISCONNECTED  The client disconnected (see AHKsock_Close for more details).  
