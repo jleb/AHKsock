@@ -103,6 +103,7 @@ Send(sEvent, iSocket = 0, sName = 0, sAddr = 0, sPort = 0, ByRef bRecvData = 0, 
         
     } Else If (sEvent = "DISCONNECTED") {
         OutputDebug, % "Server - The client disconnected. Going back to listening..."
+        bConnected := False
         
     } Else If (sEvent = "SEND") {
         
